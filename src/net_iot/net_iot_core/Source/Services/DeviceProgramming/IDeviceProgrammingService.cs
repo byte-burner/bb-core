@@ -1,3 +1,4 @@
+using net_iot_core.Services.DeviceProgramming.Exceptions;
 using net_iot_core.Services.DeviceProgramming.Models;
 using net_iot_core.Shared.ResultHandling;
 

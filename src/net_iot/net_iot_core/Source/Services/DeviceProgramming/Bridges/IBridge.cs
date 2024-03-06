@@ -58,6 +58,7 @@ namespace net_iot_core.Services.DeviceProgramming.Bridges
         /// Writes to a specific pin on the bridge.
         /// </summary>
         /// <param name="pinNumber">The pin number to read from.</param>
+        /// <param name="signal">The signal to write represented as a boolean value.</param>
         /// <returns>The signal represented as a boolean value.</returns>
         void WriteToBridgeOnPin(int pinNumber, bool signal = true);
 

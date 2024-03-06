@@ -43,10 +43,20 @@ namespace net_iot_core.Services.DeviceProgramming.Bridges
             return allBridgeInfo;
         }
 
-        /// <summary>
-        /// Opens the first connected bridge
-        /// </summary>
-        /// <returns>An instance of <see cref="IBridge"/></returns>
+        //
+        // Summary:
+        //  Opens the first connected bridge
+        //
+        // Parameters:
+        //   millisecondsTimeout:
+        //     The number of milliseconds for which the thread is suspended. If the value of
+        //     the millisecondsTimeout argument is zero, the thread relinquishes the remainder
+        //     of its time slice to any thread of equal priority that is ready to run. If there
+        //     are no other threads of equal priority that are ready to run, execution of the
+        //     current thread is not suspended.
+        //
+        // Returns:
+        //  An instance of IBridge
         public static IBridge Open()
         {
             if (UM232H.IsBridgeConnected())
