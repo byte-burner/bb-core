@@ -23,6 +23,7 @@ namespace net_iot_core.Services.FileHandling.Parsers
         /// </summary>
         /// <param name="file">The file for which to create the parser.</param>
         /// <returns>An instance of <see cref="IHexFileParser"/>.</returns>
+        /// <exception cref="NotImplementedException">Thrown when the file format is not found, meaning the parser for that file type hasn't been implemented yet.</exception>
         public static IHexFileParser Create(FileInfo file)
         {
             switch (file.Extension)
@@ -30,7 +31,7 @@ namespace net_iot_core.Services.FileHandling.Parsers
                 case ".ihx":
                     return new IntelHexFileParser(file);
 
-                // add more cases here
+                // add more cases here for different file types
                 
                 default:
                     break;

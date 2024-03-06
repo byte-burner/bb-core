@@ -4,7 +4,7 @@ using net_iot_core.Services.FileHandling.Parsers.Models;
 namespace net_iot_core.Services.FileHandling.Parsers
 {
     /// <summary>
-    /// Parses Intel Hex (.ihx) files and extracts memory entries.
+    /// Parses Intel Hex (.ihx) files to extract memory and page entries.
     /// </summary>
     public class IntelHexFileParser : IHexFileParser
     {
@@ -182,6 +182,11 @@ namespace net_iot_core.Services.FileHandling.Parsers
             return byteArr;
         }
 
+        /// <summary>
+        /// Converts an IntelHexRecord to a list of MemoryEntry objects.
+        /// </summary>
+        /// <param name="record">The IntelHexRecord to convert.</param>
+        /// <returns>A list of MemoryEntry objects representing the data in the IntelHexRecord.</returns>
         private IEnumerable<MemoryEntry> ConvertRecordToMemoryEntryList(IntelHexRecord record)
         {
             List<MemoryEntry> memoryEntries = new List<MemoryEntry>();
@@ -213,6 +218,19 @@ namespace net_iot_core.Services.FileHandling.Parsers
             }
         }
 
+        /// <summary>
+        /// Checks if the checksum of the IntelHexRecord is valid.
+        /// </summary>
+        /// <param name="record">The IntelHexRecord to validate.</param>
+        /// <returns>True if the checksum is valid, otherwise false.</returns>
+        /// <remarks>
+        /// The checksum of an IntelHexRecord is calculated as follows:
+        /// 1. Sum all data bytes in the record.
+        /// 2. Add the values of the ByteCount, RecordType, and Address fields to the sum.
+        /// 3. Take the two's complement of the least significant byte (LSB) in the sum.
+        /// 4. Compare the calculated checksum with the checksum provided in the IntelHexRecord.
+        /// 5. If the calculated checksum matches the provided checksum, the record is considered valid.
+        /// </remarks>
         private bool IsValidChecksum(IntelHexRecord record)
         {
             int sum = 0;
@@ -229,6 +247,16 @@ namespace net_iot_core.Services.FileHandling.Parsers
             return record.Checksum == checksum;
         }
 
+        /// <summary>
+        /// Checks if the record type of the IntelHexRecord is valid.
+        /// </summary>
+        /// <param name="record">The IntelHexRecord to validate.</param>
+        /// <returns>True if the record type is valid, otherwise false.</returns>
+        /// <remarks>
+        /// The record type of an IntelHexRecord indicates the type of data it represents.
+        /// Valid record types include Data (0x00) and End of File (EOF) (0x01).
+        /// This method checks if the provided record has a valid record type.
+        /// </remarks>
         private bool IsValidRecordType(IntelHexRecord record)
         {
             switch (record.RecordType)

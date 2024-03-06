@@ -52,6 +52,14 @@ namespace net_iot_core.Services.DeviceProgramming
         /// <param name="deviceType">The type of the programmable device.</param>
         /// <param name="programFileInfo">The program file to be loaded onto the device.</param>
         /// <returns>A service result indicating the outcome of the programming operation.</returns>
+        /// <exception cref="NotFoundException">Thrown when the bridge or device type is not found or supported.</exception>
+        /// <exception cref="AlreadyInitializedException">Thrown when the bridge or device is already initialized.</exception>
+        /// <exception cref="NotInitializedException">Thrown when the bridge or device is not initialized.</exception>
+        /// <exception cref="BridgeIOException">Thrown when the bridge or device is already opened.</exception>
+        /// <exception cref="FileNotFoundException">Thrown when the program file is not found.</exception>
+        /// <exception cref="DirectoryNotFoundException">Thrown when the directory of the program file is not found.</exception>
+        /// <exception cref="NotImplementedException">Thrown when the extension for the program file is not supported.</exception>
+        /// <exception cref="FileFormatException">Thrown when the format of the program file is incorrect.</exception>
         ServiceResult ProgramDevice(string bridgeType,
             string bridgeSerialNbr,
             string deviceType,
@@ -71,6 +79,14 @@ namespace net_iot_core.Services.DeviceProgramming
         /// <param name="deviceType">The type of the programmable device.</param>
         /// <param name="programFileInfo">The program file to be loaded onto the device.</param>
         /// <returns>A service result indicating the outcome of the programming operation.</returns>
+        /// <exception cref="NotFoundException">Thrown when the bridge or device type is not found or supported.</exception>
+        /// <exception cref="AlreadyInitializedException">Thrown when the bridge or device is already initialized.</exception>
+        /// <exception cref="NotInitializedException">Thrown when the bridge or device is not initialized.</exception>
+        /// <exception cref="BridgeIOException">Thrown when the bridge or device is already opened.</exception>
+        /// <exception cref="FileNotFoundException">Thrown when the program file is not found.</exception>
+        /// <exception cref="DirectoryNotFoundException">Thrown when the directory of the program file is not found.</exception>
+        /// <exception cref="NotImplementedException">Thrown when the extension for the program file is not supported.</exception>
+        /// <exception cref="FileFormatException">Thrown when the format of the program file is incorrect.</exception>
         ServiceResult ProgramDevice(string deviceType, FileInfo programFileInfo);
     }
 }
