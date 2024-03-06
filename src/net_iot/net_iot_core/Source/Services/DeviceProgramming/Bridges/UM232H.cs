@@ -370,7 +370,7 @@ namespace net_iot_core.Services.DeviceProgramming.Bridges
         }
 
         /// <summary>
-        /// Gets all connected bridges.
+        /// Gets the bridge info for each connected UM232H bridge
         /// </summary>
         /// <returns>A collection of <see cref="BridgeInfo"/> representing the connected bridges.</returns>
         public static IEnumerable<BridgeInfo> GetAllConnectedBridges()

@@ -69,7 +69,7 @@ namespace net_iot_core.Services.DeviceProgramming.Bridges
         bool ReadFromBridgeOnPin(int pinNumber);
 
         /// <summary>
-        /// Resets the bridge.
+        /// Resets the bridge back to its default configuration.
         /// </summary>
         void Reset();
     }

@@ -10,7 +10,7 @@ namespace net_iot_core.Services.DeviceProgramming.Devices
         void Wipe();
 
         /// <summary>
-        /// Sets the programming mode of the device.
+        /// Sets the programming mode of the device (i.e. how the device will read, write, and communicate data).
         /// </summary>
         /// <param name="mode">The programming mode to set.</param>
         void SetProgrammingMode(ProgrammingMode mode);
@@ -22,7 +22,7 @@ namespace net_iot_core.Services.DeviceProgramming.Devices
         void Program(string filePath);
 
         /// <summary>
-        /// Programs the device with the firmware from the specified file.
+        /// Programs the device with the firmware from the specified file info.
         /// </summary>
         /// <param name="fileInfo">The firmware file information.</param>
         void Program(FileInfo fileInfo);

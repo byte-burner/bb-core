@@ -1,7 +1,7 @@
 namespace net_iot_core.Services.DeviceProgramming.Exceptions
 {
     /// <summary>
-    /// Exception thrown when attempting to initialize a resource that is already initialized.
+    /// Exception thrown when attempting to initialize a bridge or device that is already initialized.
     /// </summary>
     public class AlreadyInitializedException : InvalidOperationException
     {

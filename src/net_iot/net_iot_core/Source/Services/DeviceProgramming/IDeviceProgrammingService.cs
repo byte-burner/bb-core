@@ -13,7 +13,7 @@ namespace net_iot_core.Services.DeviceProgramming
         List<BridgeInfo> SupportedBridges { get; }
 
         /// <summary>
-        /// Retrieves information about all connected bridges.
+        /// Retrieves bridge information about all connected bridges.
         /// </summary>
         /// <returns>A service result containing information about all connected bridges.</returns>
         ServiceResult<IEnumerable<BridgeInfo>> GetAllConnectedBridges();
@@ -45,7 +45,7 @@ namespace net_iot_core.Services.DeviceProgramming
             string programFilePath);
 
         /// <summary>
-        /// Programs a device using the specified bridge, device type, and program file.
+        /// Programs a device using the specified bridge, device type, and program file info.
         /// </summary>
         /// <param name="bridgeType">The type of bridge to use for programming.</param>
         /// <param name="bridgeSerialNbr">The serial number of the bridge.</param>
@@ -66,7 +66,7 @@ namespace net_iot_core.Services.DeviceProgramming
         ServiceResult ProgramDevice(string deviceType, string programFilePath);
 
         /// <summary>
-        /// Programs a device using the default bridge, device type, and program file.
+        /// Programs a device using the default bridge, device type, and program file info.
         /// </summary>
         /// <param name="deviceType">The type of the programmable device.</param>
         /// <param name="programFileInfo">The program file to be loaded onto the device.</param>
