@@ -92,8 +92,8 @@ typings/
 out/
 
 # Misc
+src/Resources/net_iot_api/*
+src/Resources/net_iot_util/*
+
 !src/Resources/net_iot_api/README.md
 !src/Resources/net_iot_util/README.md
-
-src/Resources/net_iot_api
-src/Resources/net_iot_util
