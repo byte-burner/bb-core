@@ -5,6 +5,14 @@ VisualStudioVersion = 17.5.002.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "net_iot_tests", "net_iot_tests.csproj", "{4C5B3A2F-6117-47F6-B315-B5B89A578A8E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "net_iot_api", "..\net_iot_api\net_iot_api.csproj", "{867033F8-DD5C-4D0C-ABBB-AC2BAAB81B94}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "net_iot_core", "..\net_iot_core\net_iot_core.csproj", "{9477B403-E5D9-4BA7-9BE8-5848A712BD63}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "net_iot_util", "..\net_iot_util\net_iot_util.csproj", "{2B6C5681-1124-482D-870C-CAA0E88C551E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "net_iot_data", "..\net_iot_data\net_iot_data.csproj", "{E1DEEC7E-9FE3-4B3F-B9A6-7386AAA9B9B2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +23,22 @@ Global
 		{4C5B3A2F-6117-47F6-B315-B5B89A578A8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4C5B3A2F-6117-47F6-B315-B5B89A578A8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4C5B3A2F-6117-47F6-B315-B5B89A578A8E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{867033F8-DD5C-4D0C-ABBB-AC2BAAB81B94}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{867033F8-DD5C-4D0C-ABBB-AC2BAAB81B94}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{867033F8-DD5C-4D0C-ABBB-AC2BAAB81B94}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{867033F8-DD5C-4D0C-ABBB-AC2BAAB81B94}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9477B403-E5D9-4BA7-9BE8-5848A712BD63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9477B403-E5D9-4BA7-9BE8-5848A712BD63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9477B403-E5D9-4BA7-9BE8-5848A712BD63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9477B403-E5D9-4BA7-9BE8-5848A712BD63}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B6C5681-1124-482D-870C-CAA0E88C551E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B6C5681-1124-482D-870C-CAA0E88C551E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B6C5681-1124-482D-870C-CAA0E88C551E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B6C5681-1124-482D-870C-CAA0E88C551E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E1DEEC7E-9FE3-4B3F-B9A6-7386AAA9B9B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1DEEC7E-9FE3-4B3F-B9A6-7386AAA9B9B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1DEEC7E-9FE3-4B3F-B9A6-7386AAA9B9B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1DEEC7E-9FE3-4B3F-B9A6-7386AAA9B9B2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

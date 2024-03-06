@@ -5,6 +5,8 @@ VisualStudioVersion = 17.5.002.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "net_iot_util", "net_iot_util.csproj", "{D6EC14EE-43A3-45BC-A787-1088763F2236}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "net_iot_core", "..\net_iot_core\net_iot_core.csproj", "{27E31321-C6D9-4229-9170-B59C935810EE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{D6EC14EE-43A3-45BC-A787-1088763F2236}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D6EC14EE-43A3-45BC-A787-1088763F2236}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D6EC14EE-43A3-45BC-A787-1088763F2236}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27E31321-C6D9-4229-9170-B59C935810EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27E31321-C6D9-4229-9170-B59C935810EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27E31321-C6D9-4229-9170-B59C935810EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27E31321-C6D9-4229-9170-B59C935810EE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
