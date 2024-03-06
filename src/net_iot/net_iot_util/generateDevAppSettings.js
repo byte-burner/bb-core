@@ -118,7 +118,7 @@ const main = async () => {
     console.log("\n\n-----Enter connection options for nlog below-----");
     const log_file = await prompt(
       "\nEnter the log file path for the file target (i.e. absolute file path required): ",
-      "/Users/joshbender/DocumentsLocal/Github/8051-programmer/src/net_iot/net_iot_util/nlog.dump");
+      "/Users/joshbender/DocumentsLocal/Github/bb-core/src/net_iot/net_iot_util/nlog.dump");
     const log_file_level = await prompt("\nEnter the log level for the file target: (Trace|Debug|Info|Warn|Error): ", "Debug");
     const log_use_internal = await prompt("\nSetup internal logging for nlog [Y/n]: ");
     let log_internal = {};
@@ -126,7 +126,7 @@ const main = async () => {
       const log_internal_level = await prompt("\nEnter the internal log level: (Trace|Debug|Info|Warn|Error): ", "Error");
       const log_internal_path = await prompt(
         "\nEnter the path to the internal log file (i.e. absolute file path required): ",
-        "/Users/joshbender/DocumentsLocal/Github/8051-programmer/src/net_iot/net_iot_util/nlog_internal.dump");
+        "/Users/joshbender/DocumentsLocal/Github/bb-core/src/net_iot/net_iot_util/nlog_internal.dump");
 
       if (log_use_internal) {
         log_internal = {

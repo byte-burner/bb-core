@@ -1,4 +1,4 @@
-# 8051-programmer
+# bb-core
 
 Resources:
 - How to setup icons in electron: https://www.electronforge.io/guides/create-and-add-icons
