@@ -15,6 +15,7 @@ const rl = readline.createInterface({
     output: process.stdout
 });
 const fs = require('fs');
+const path = require('path');
 const { exit } = require('process');
 
 /**
@@ -196,7 +197,7 @@ const main = async () => {
     console.log("\n\n-----Enter connection options for the database below-----");
     const db_path = await prompt(
         "\nEnter the path to the sqlite database: ",
-        "/Users/joshbender/DocumentsLocal/Github/bb-core/src/net_iot/net_iot_data/sqlite.db");
+        path.resolve(`${__dirname}/../net_iot_data/sqlite.db`));
 
     // nlog
     console.log("\n\n-----Enter connection options for nlog below-----");
@@ -208,7 +209,7 @@ const main = async () => {
       const log_internal_level = await prompt("\nEnter the internal log level: (Trace|Debug|Info|Warn|Error): ", "Error");
       const log_internal_path = await prompt(
         "\nEnter the path to the internal log file (i.e. absolute file path required): ",
-        "/Users/joshbender/DocumentsLocal/Github/bb-core/src/net_iot/net_iot_data/sqlite.db");
+        path.resolve(`${__dirname}/../net_iot_data/sqlite.db`));
 
       if (log_use_internal) {
         log_internal = {

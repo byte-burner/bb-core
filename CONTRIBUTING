@@ -1,2 +1,5 @@
 - Code Comment Standards
-  * Add code comments to all necassary class definitions, public functions, constructors, and only the private methods that are complicated enough to warrant an explanation through a detailed, concise, and clear code comment methods,
+ - Add code comments to all necassary class definitions, public functions, constructors, and only the private methods that are complicated enough to warrant an explanation through a detailed, concise, and clear code comment methods,
+
+- Running app
+ - generateAppSettings.js
