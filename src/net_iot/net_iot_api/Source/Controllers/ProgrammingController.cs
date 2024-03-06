@@ -51,6 +51,15 @@ namespace net_iot_api.Controllers
                 DeviceType = d.Type,
             }));
         }
+
+        [HttpGet]
+        public ActionResult GetAllSupportedBridges()
+        {
+            return Ok(this._deviceProgrammingService.SupportedBridges.Select((d) => new BridgeDto()
+            {
+                BridgeType = d.Type,
+            }));
+        }
         
         [HttpGet]
         public ActionResult GetAllConnectedBridges()
@@ -58,8 +67,12 @@ namespace net_iot_api.Controllers
             try
             {
                 var response = this._deviceProgrammingService.GetAllConnectedBridges();
+                var payload = response.Payload!.Select((d) => new BridgeDto()
+                {
+                    BridgeType = d.Type,
+                });
 
-                return response.IsSuccess ? Ok(response.Payload) : BadRequest(response.ToProblemDetails());
+                return response.IsSuccess ? Ok(payload) : BadRequest(response.ToProblemDetails());
             } 
             catch(Exception ex)
             {

@@ -6,7 +6,7 @@ import {
   CircularProgress,
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import BoltIcon from '@mui/icons-material/Bolt';
+import LocalFireDepartmentIcon from '@mui/icons-material/LocalFireDepartment';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import MemoryIcon from '@mui/icons-material/Memory';
 import { Dropdown } from '../../../Common/components';
@@ -51,10 +51,10 @@ const autoCompleteStyle = {
 };
 
 export function MainPage() {
-  const [memIconBold, setMemIconBold] = useState(false);
-  const [boltIconBold, setBoltIconBold] = useState(false);
+  const [addIconBold, setAddIconBold] = useState(false);
+  const [fireIconBold, setFireIconBold] = useState(false);
   const [fileButtonDisabled, setFileButtonDisabled] = useState(true);
-  const [flashButtonDisabled, setFlashButtonDisabled] = useState(true);
+  const [burnButtonDisabled, setBurnButtonDisabled] = useState(true);
   const [device, setDevice] = useState('');
   const [bridge, setBridge] = useState('');
   const [file, setFile] = useState(null);
@@ -82,7 +82,7 @@ export function MainPage() {
     { opacity: isBold ? '' : '25%' }
   );
 
-  const onFlashClick = () => {
+  const onBurnClick = () => {
     programDevice.request(new ProgrammingInfo({
       BridgeType: bridge.bridgeType,
       BridgeSerialNbr: bridge.bridgeSerialNbr,
@@ -91,20 +91,20 @@ export function MainPage() {
     }));
   };
 
-  const enableFlashStep = (flag) => {
-    setFlashButtonDisabled(!flag);
-    setBoltIconBold(flag);
+  const enableBurnStep = (flag) => {
+    setBurnButtonDisabled(!flag);
+    setFireIconBold(flag);
   };
 
   const enableFileStep = async (flag) => {
     setFile(null);
     setFileButtonDisabled(!flag);
-    setMemIconBold(flag);
+    setAddIconBold(flag);
   };
 
   useEffect(() => {
     if (file) {
-      enableFlashStep(true);
+      enableBurnStep(true);
     }
   }, [file]);
 
@@ -117,7 +117,7 @@ export function MainPage() {
           enableFileStep(true);
         } else {
           enableFileStep(false);
-          enableFlashStep(false);
+          enableBurnStep(false);
         }
       }
     };
@@ -127,7 +127,7 @@ export function MainPage() {
 
   useEffect(() => {
     enableFileStep(false);
-    enableFlashStep(false);
+    enableBurnStep(false);
     setDevice('');
     setBridge('');
   }, [bridges, devices]);
@@ -140,21 +140,21 @@ export function MainPage() {
       >
         <Grid item xs={4} position="relative">
           <Item>
-            <AddBoxIcon fontSize="large" />
+            <MemoryIcon fontSize="large" />
           </Item>
-          <Line sx={getBoldStyle(memIconBold)} />
+          <Line sx={getBoldStyle(addIconBold)} />
         </Grid>
 
         <Grid item xs={4} position="relative" display="flex" justifyContent="center">
           <Item>
-            <MemoryIcon sx={getBoldStyle(memIconBold)} fontSize="large" />
+            <AddBoxIcon sx={getBoldStyle(addIconBold)} fontSize="large" />
           </Item>
-          <Line sx={getBoldStyle(boltIconBold)} />
+          <Line sx={getBoldStyle(fireIconBold)} />
         </Grid>
 
         <Grid item xs={4} position="relative">
           <Item>
-            <BoltIcon sx={getBoldStyle(boltIconBold)} fontSize="large" />
+            <LocalFireDepartmentIcon sx={getBoldStyle(fireIconBold)} fontSize="large" />
           </Item>
         </Grid>
 
@@ -211,10 +211,10 @@ export function MainPage() {
               size="large"
               variant="contained"
               sx={buttonStyle}
-              disabled={flashButtonDisabled}
-              onClick={onFlashClick}
+              disabled={burnButtonDisabled}
+              onClick={onBurnClick}
             >
-              {(!programDevice.loading ? 'Flash device' : <CircularProgress size={25} />)}
+              {(!programDevice.loading ? 'Burn device' : <CircularProgress size={25} />)}
             </Button>
           </Item>
         </Grid>

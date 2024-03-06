@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Box,
   AppBar,
@@ -7,36 +7,109 @@ import {
   List,
   Typography,
   Divider,
-  ListItem,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
   Button,
 } from '@mui/material';
 import { Link } from 'react-router-dom';
+import MemoryIcon from '@mui/icons-material/Memory';
 import NightlightIcon from '@mui/icons-material/Nightlight';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import { ThemeSettings } from '../components';
+import HelpIcon from '@mui/icons-material/Help';
+import { ThemeSettings, SettingsListItem } from '../components';
+import { BridgeSettings } from '../components/Settings/BridgeSettings';
+import { DeviceSettings } from '../components/Settings/DeviceSettings';
+import { HelpSettings } from '../components/Settings/HelpSettings';
+import { useDeviceProgrammiingApi } from '../../../Api/RestApi';
 
 const drawerWidth = 240;
-const defaultTitle = 'Theme';
+const settings = {
+  themeSettings: false,
+  bridgeSettings: false,
+  deviceSettings: false,
+  helpSettings: false,
+};
+const titleMap = {
+  themeSettings: 'Theme',
+  bridgeSettings: 'Bridge Info',
+  deviceSettings: 'Device Info',
+  helpSettings: 'Help',
+};
 
 export function SettingsPage() {
-  const [title, setTitle] = useState(defaultTitle);
-  const [showThemeSettings, setShowThemeSettings] = useState(true);
+  const [title, setTitle] = useState('');
+  const [showSettings, setShowSettings] = useState({ ...settings });
+  const {
+    getAllSupportedBridges,
+    getAllSupportedDevices,
+    getAllConnectedBridges,
+  } = useDeviceProgrammiingApi();
 
   const onThemeSettingClick = () => {
-    setShowThemeSettings(true);
-    setTitle(defaultTitle);
+    setShowSettings({
+      ...settings,
+      themeSettings: true,
+    });
+    setTitle(titleMap.themeSettings);
   };
 
-  const showSettings = () => {
-    if (showThemeSettings) {
+  const onBridgeSettingClick = async () => {
+    setShowSettings({
+      ...settings,
+      bridgeSettings: true,
+    });
+    setTitle(titleMap.bridgeSettings);
+
+    // when the user opens the bridge settings page we want to check for connected bridges
+    getAllConnectedBridges.request();
+  };
+
+  const onDeviceSettingClick = () => {
+    setShowSettings({
+      ...settings,
+      deviceSettings: true,
+    });
+    setTitle(titleMap.deviceSettings);
+  };
+
+  const onHelpSettingClick = () => {
+    setShowSettings({
+      ...settings,
+      helpSettings: true,
+    });
+    setTitle(titleMap.helpSettings);
+  };
+
+  const showSettingsPage = () => {
+    if (showSettings.themeSettings) {
       return (<ThemeSettings />);
+    } if (showSettings.bridgeSettings) {
+      return (
+        <BridgeSettings
+          supportedBridges={getAllSupportedBridges.data.map((b) => b.bridgeType)}
+          connectedBridges={getAllConnectedBridges.data.map((b) => b.bridgeType)}
+          loadConnectedBridges={getAllConnectedBridges.request}
+        />
+      );
+    } if (showSettings.deviceSettings) {
+      return (
+        <DeviceSettings
+          supportedDevices={getAllSupportedDevices.data.map((b) => b.deviceType)}
+        />
+      );
+    } if (showSettings.helpSettings) {
+      return (<HelpSettings />);
     }
 
     return null;
   };
+
+  useEffect(() => {
+    setShowSettings({ ...settings, themeSettings: true });
+    setTitle(titleMap.themeSettings);
+
+    // make initial data requests
+    getAllSupportedBridges.request();
+    getAllSupportedDevices.request();
+  }, []);
 
   return (
     <Box sx={{ display: 'flex', height: '100%' }}>
@@ -79,16 +152,26 @@ export function SettingsPage() {
         <Toolbar />
         <Divider />
         <List>
-          <ListItem key="theme" disablePadding>
-            <ListItemButton
-              onClick={onThemeSettingClick}
-            >
-              <ListItemIcon>
-                <NightlightIcon />
-              </ListItemIcon>
-              <ListItemText primary="Theme" />
-            </ListItemButton>
-          </ListItem>
+          <SettingsListItem
+            text="Theme"
+            onClick={onThemeSettingClick}
+            icon={<NightlightIcon />}
+          />
+          <SettingsListItem
+            text="Bridge Info"
+            onClick={onBridgeSettingClick}
+            icon={<MemoryIcon />}
+          />
+          <SettingsListItem
+            text="Device Info"
+            onClick={onDeviceSettingClick}
+            icon={<MemoryIcon />}
+          />
+          <SettingsListItem
+            text="Help"
+            onClick={onHelpSettingClick}
+            icon={<HelpIcon />}
+          />
         </List>
       </Drawer>
       <Box
@@ -96,7 +179,7 @@ export function SettingsPage() {
         sx={{ flexGrow: 1, p: 3 }}
       >
         <Toolbar />
-        {showSettings()}
+        {showSettingsPage()}
       </Box>
     </Box>
   );

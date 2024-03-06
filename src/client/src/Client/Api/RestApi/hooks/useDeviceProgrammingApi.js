@@ -31,6 +31,22 @@ const useGetAllSupportedDevices = () => {
   };
 };
 
+const useGetAllSupportedBridges = () => {
+  const { request: _request, loading, data } = useFetch({
+    endpoint: '/Programming/GetAllSupportedBridges',
+    method: 'GET',
+    defaultData: [],
+  });
+
+  const request = async () => _request();
+
+  return {
+    request,
+    loading,
+    data,
+  };
+};
+
 const useGetAllConnectedBridges = () => {
   const { request: _request, loading, data } = useFetch({
     endpoint: '/Programming/GetAllConnectedBridges',
@@ -89,6 +105,7 @@ export const useDeviceProgrammiingApi = () => {
   const startMonitoringBridgeEvents = useStartMonitoringBridgeEvents();
   const programDevice = useProgramDevice();
   const getAllConnectedBridges = useGetAllConnectedBridges();
+  const getAllSupportedBridges = useGetAllSupportedBridges();
   const getAllSupportedDevices = useGetAllSupportedDevices();
   const getSupportedFileExtensionsByDeviceType = useGetSupportedFileExtensionsByDeviceType();
 
@@ -96,6 +113,7 @@ export const useDeviceProgrammiingApi = () => {
     startMonitoringBridgeEvents,
     programDevice,
     getAllConnectedBridges,
+    getAllSupportedBridges,
     getAllSupportedDevices,
     getSupportedFileExtensionsByDeviceType,
   };
