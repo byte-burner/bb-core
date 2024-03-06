@@ -1,0 +1,3 @@
+Should have our "base" config in the appsettings.json file. Anything that could change on different environments (in most cases connection strings for databases), you put in the environment specific appsettings.{env}.json files, depending on how many different environments you have. Also everything that comes later in the configBuilder pipeline overrides previous settings.
+
+Wherever you host your .NET application you should be able to set the environment variable ASPNETCORE_ENVIRONMENT or DOTNET_ENVIRONMENT to that specific environment you want to load. If neither are set, the environment defaults to Production.

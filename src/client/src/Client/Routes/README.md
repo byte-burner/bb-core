@@ -1,0 +1,3 @@
+Configuration-Based Routing:
+- In the future if routing becomes unwieldy, implement a custom configuration-based routing system that reads route information from an API where the routes are stored in a configuration file or database. This approach allows you to define routes in a more abstract way and load them dynamically. You can create a custom route resolver that reads the configuration and generates routes and path variables accordingly.
+- Instead of having route and path information stored in exported constants you could also load them into the react context API and provide them to the entire application through a hook or provider service of some sort.

@@ -1,0 +1,80 @@
+name: Byte Burner Windows Build
+
+on:
+  workflow_call:
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout main branch
+        uses: actions/checkout@v3
+
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20.10.0
+
+      - name: Print node version
+        run: |
+          echo "*****************************************"
+          node --version
+          echo "*****************************************"
+
+      - name: Print npm version
+        run: |
+          echo "*****************************************"
+          npm --version
+          echo "*****************************************"
+
+      - name: Setup dotnet
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '8.0.100'
+
+      - name: Print dotnet version
+        run: |
+          echo "*****************************************"
+          dotnet --version
+          echo "*****************************************"
+
+      - name: Setup python3
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9' 
+
+      - name: Print python3 version
+        run: |
+          echo "*****************************************"
+          python3 --version
+          echo "*****************************************"
+
+      - name: Build Electron App (x64)
+        run: |
+          cd src/scripts
+          ./windows-build.ps1
+
+      - name: Upload Byte Burner To Digital Ocean Spaces (x64)
+        uses: BetaHuhn/do-spaces-action@latest
+        with:
+          access_key: ${{ secrets.ACCESS_KEY}}
+          secret_key: ${{ secrets.SECRET_KEY }}
+          space_name: ${{ secrets.SPACES_NAME }}
+          space_region: ${{ secrets.SPACES_REGION }}
+          source: "src/client/out/make/squirrel.windows/x64/byte-burner-1.0.0 Setup.exe"
+          out_dir: x64
+
+      - name: Build Electron App (Arm64)
+        run: |
+          cd src/scripts
+          ./windows-build.ps1 -r win-arm64 -a arm64
+
+      - name: Upload Byte Burner To Digital Ocean Spaces (Arm64)
+        uses: BetaHuhn/do-spaces-action@latest
+        with:
+          access_key: ${{ secrets.ACCESS_KEY}}
+          secret_key: ${{ secrets.SECRET_KEY }}
+          space_name: ${{ secrets.SPACES_NAME }}
+          space_region: ${{ secrets.SPACES_REGION }}
+          source: "src/client/out/make/squirrel.windows/arm64/byte-burner-1.0.0 Setup.exe"
+          out_dir: arm64

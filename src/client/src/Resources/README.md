@@ -1,0 +1,1 @@
+Extra Resources should be copied here before electron is packaged

@@ -1,0 +1,1 @@
+This folder contains functional resource designs and technical resource designs meant to be a starting point for all technical and busiiness related design resources

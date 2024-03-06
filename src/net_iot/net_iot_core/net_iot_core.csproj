@@ -1,0 +1,66 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Iot.Device.Bindings" Version="3.0.0" />
+    <PackageReference Include="System.IO.Packaging" Version="8.0.0" />
+    <PackageReference Include="Usb.Events" Version="11.1.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ContentWithTargetPath Include="Library/darwin/arch/x64/libftd2xx.dylib" Condition=" $([MSBuild]::IsOsPlatform('OSX')) AND '$([System.Runtime.InteropServices.RuntimeInformation]::OSArchitecture)' == 'X64' ">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>libftd2xx.dylib</TargetPath>
+    </ContentWithTargetPath>
+    <ContentWithTargetPath Include="Library/darwin/arch/arm64/libftd2xx.dylib" Condition=" $([MSBuild]::IsOsPlatform('OSX')) AND '$([System.Runtime.InteropServices.RuntimeInformation]::OSArchitecture)' == 'Arm64' ">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>libftd2xx.dylib</TargetPath>
+    </ContentWithTargetPath>
+    <ContentWithTargetPath Include="Library/linux/arch/x64/libftd2xx.so" Condition=" $([MSBuild]::IsOsPlatform('Linux')) AND '$([System.Runtime.InteropServices.RuntimeInformation]::OSArchitecture)' == 'X64' ">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>libftd2xx.so</TargetPath>
+    </ContentWithTargetPath>
+    <ContentWithTargetPath Include="Library/linux/arch/arm64/libftd2xx.so" Condition=" $([MSBuild]::IsOsPlatform('Linux')) AND '$([System.Runtime.InteropServices.RuntimeInformation]::OSArchitecture)' == 'Arm64' ">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>libftd2xx.so</TargetPath>
+    </ContentWithTargetPath>
+    <ContentWithTargetPath Include="Library/windows/arch/x64/ftd2xx.dll" Condition=" $([MSBuild]::IsOsPlatform('Windows')) AND '$([System.Runtime.InteropServices.RuntimeInformation]::OSArchitecture)' == 'X64' ">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>ftd2xx.dll</TargetPath>
+    </ContentWithTargetPath>
+    <ContentWithTargetPath Include="Library/windows/arch/arm64/ftd2xx.dll" Condition=" $([MSBuild]::IsOsPlatform('Windows')) AND '$([System.Runtime.InteropServices.RuntimeInformation]::OSArchitecture)' == 'Arm64' ">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>ftd2xx.dll</TargetPath>
+    </ContentWithTargetPath>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ContentWithTargetPath Include="Library/darwin/arch/x64/UsbEventWatcher.Mac.dylib" Condition=" $([MSBuild]::IsOsPlatform('OSX')) AND '$([System.Runtime.InteropServices.RuntimeInformation]::OSArchitecture)' == 'X64' ">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>UsbEventWatcher.Mac.dylib</TargetPath>
+    </ContentWithTargetPath>
+    <ContentWithTargetPath Include="Library/darwin/arch/arm64/UsbEventWatcher.Mac.dylib" Condition=" $([MSBuild]::IsOsPlatform('OSX')) AND '$([System.Runtime.InteropServices.RuntimeInformation]::OSArchitecture)' == 'Arm64' ">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>UsbEventWatcher.Mac.dylib</TargetPath>
+    </ContentWithTargetPath>
+    <ContentWithTargetPath Include="Library/linux/arch/x64/UsbEventWatcher.Linux.so" Condition=" $([MSBuild]::IsOsPlatform('Linux')) AND '$([System.Runtime.InteropServices.RuntimeInformation]::OSArchitecture)' == 'X64' ">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>UsbEventWatcher.Linux.so</TargetPath>
+    </ContentWithTargetPath>
+    <ContentWithTargetPath Include="Library/linux/arch/arm64/UsbEventWatcher.Linux.so" Condition=" $([MSBuild]::IsOsPlatform('Linux')) AND '$([System.Runtime.InteropServices.RuntimeInformation]::OSArchitecture)' == 'Arm64' ">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>UsbEventWatcher.Linux.so</TargetPath>
+    </ContentWithTargetPath>
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <ProjectReference Include="..\net_iot_data\net_iot_data.csproj" />
+  </ItemGroup>
+
+</Project>

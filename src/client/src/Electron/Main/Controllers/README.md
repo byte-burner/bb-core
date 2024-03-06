@@ -1,0 +1,1 @@
+The controllers here define handlers for backend calls to our ipc channels. This architecture should feel similar to using web controllers in asp.net and operates in an identical way.
