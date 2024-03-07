@@ -1,6 +1,0 @@
-- Code Comment Standards
- - Add code comments to all necassary class definitions, public functions, constructors, and only the private methods that are complicated enough to warrant an explanation through a detailed, concise, and clear code comment methods,
- - XML Code Comments for net_iot_core only
-
-- Running app
- - generateAppSettings.js
