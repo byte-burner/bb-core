@@ -108,7 +108,7 @@ function publishApiToElectron(){
 
   rm -rf $dotnet_api_src_path/bin $dotnet_api_src_path/obj
 
-  dotnet publish $dotnet_api_src_path \
+  dotnet publish $dotnet_api_src_path/net_iot_api.csproj \
   -c $configuration \
   -p:PublishSingleFile=true \
   -p:PublishTrimmed=false \
@@ -128,7 +128,7 @@ function publishUtilToElectron(){
 
   rm -rf $dotnet_util_src_path/bin $dotnet_util_src_path/obj
 
-  dotnet publish $dotnet_util_src_path \
+  dotnet publish $dotnet_util_src_path/net_iot_util.csproj \
   -c $configuration \
   -p:PublishSingleFile=true \
   -p:PublishTrimmed=false \
