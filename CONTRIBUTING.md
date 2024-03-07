@@ -22,7 +22,7 @@ This structure provides users with flexibility in choosing their preferred metho
     - EditorConfig for VS Code
     - ESLint
     - GitLens
-    - Vim (Optional - But you should learn it!)
+    - Vim (Optional - But good to learn it!)
 
 ### Building the app
  1. cd src/scripts
@@ -46,7 +46,7 @@ This structure provides users with flexibility in choosing their preferred metho
 
 ## How can I add a device binding?
 
-To add a device bindings for a new programmable device start in src/net_iot/net_iot_core/Source/Services/DeviceProgramming/Devices.
+To add a device binding for a new programmable device start in src/net_iot/net_iot_core/Source/Services/DeviceProgramming/Devices.
 
 Add a new binding, for example, AT89S51 that implements the IDevice interface. Use previous device bindings as a refernce point.
 
