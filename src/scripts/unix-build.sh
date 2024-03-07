@@ -46,7 +46,9 @@ electron_util_resource_path="../client/src/Resources/net_iot_util"
 electron_src_path='../client/src'
 electron_out_path='../client/out'
 dotnet_api_src_path='../net_iot/net_iot_api'
+dotnet_api_proj_to_publish='net_iot_api.csproj'
 dotnet_util_src_path='../net_iot/net_iot_util'
+dotnet_util_proj_to_publish='net_iot_util.csproj'
 
 restore=true
 bundle_all=true
@@ -108,7 +110,7 @@ function publishApiToElectron(){
 
   rm -rf $dotnet_api_src_path/bin $dotnet_api_src_path/obj
 
-  dotnet publish $dotnet_api_src_path/net_iot_api.csproj \
+  dotnet publish $dotnet_api_src_path/$dotnet_api_proj_to_publish \
   -c $configuration \
   -p:PublishSingleFile=true \
   -p:PublishTrimmed=false \
@@ -128,7 +130,7 @@ function publishUtilToElectron(){
 
   rm -rf $dotnet_util_src_path/bin $dotnet_util_src_path/obj
 
-  dotnet publish $dotnet_util_src_path/net_iot_util.csproj \
+  dotnet publish $dotnet_util_src_path/$dotnet_util_proj_to_publish \
   -c $configuration \
   -p:PublishSingleFile=true \
   -p:PublishTrimmed=false \
