@@ -18,11 +18,11 @@
   <ItemGroup>
     <ContentWithTargetPath Include="Library/darwin/arch/x64/libftd2xx.dylib" Condition=" '$(RuntimeIdentifier)' == 'osx-x64' OR ( '$(RuntimeIdentifier)' == '' AND $([MSBuild]::IsOsPlatform('OSX')) AND '$([System.Runtime.InteropServices.RuntimeInformation]::OSArchitecture)' == 'X64' )">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <TargetPath>libftd2xx_x64.dylib</TargetPath>
+      <TargetPath>libftd2xx.dylib</TargetPath>
     </ContentWithTargetPath>
     <ContentWithTargetPath Include="Library/darwin/arch/arm64/libftd2xx.dylib" Condition=" '$(RuntimeIdentifier)' == 'osx-arm64' OR ( '$(RuntimeIdentifier)' == '' AND $([MSBuild]::IsOsPlatform('OSX')) AND '$([System.Runtime.InteropServices.RuntimeInformation]::OSArchitecture)' == 'Arm64' )">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <TargetPath>libftd2xx_arm64.dylib</TargetPath>
+      <TargetPath>libftd2xx.dylib</TargetPath>
     </ContentWithTargetPath>
     <ContentWithTargetPath Include="Library/linux/arch/x64/libftd2xx.so" Condition=" '$(RuntimeIdentifier)' == 'linux-x64' OR ( '$(RuntimeIdentifier)' == '' AND $([MSBuild]::IsOsPlatform('Linux')) AND '$([System.Runtime.InteropServices.RuntimeInformation]::OSArchitecture)' == 'X64' )">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
