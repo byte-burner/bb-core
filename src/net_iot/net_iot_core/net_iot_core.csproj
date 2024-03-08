@@ -16,46 +16,46 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ContentWithTargetPath Include="Library/darwin/arch/x64/libftd2xx.dylib" Condition=" $([MSBuild]::IsOsPlatform('OSX')) AND '$([System.Runtime.InteropServices.RuntimeInformation]::OSArchitecture)' == 'X64' ">
+    <ContentWithTargetPath Include="Library/darwin/arch/x64/libftd2xx_x64.dylib" Condition=" '$(RuntimeIdentifier)' == 'osx-x64' OR ( '$(RuntimeIdentifier)' == '' AND $([MSBuild]::IsOsPlatform('OSX')) AND '$([System.Runtime.InteropServices.RuntimeInformation]::OSArchitecture)' == 'X64' )">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <TargetPath>libftd2xx.dylib</TargetPath>
+      <TargetPath>libftd2xx_x64.dylib</TargetPath>
     </ContentWithTargetPath>
-    <ContentWithTargetPath Include="Library/darwin/arch/arm64/libftd2xx.dylib" Condition=" $([MSBuild]::IsOsPlatform('OSX')) AND '$([System.Runtime.InteropServices.RuntimeInformation]::OSArchitecture)' == 'Arm64' ">
+    <ContentWithTargetPath Include="Library/darwin/arch/arm64/libftd2xx_arm64.dylib" Condition=" '$(RuntimeIdentifier)' == 'osx-arm64' OR ( '$(RuntimeIdentifier)' == '' AND $([MSBuild]::IsOsPlatform('OSX')) AND '$([System.Runtime.InteropServices.RuntimeInformation]::OSArchitecture)' == 'Arm64' )">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <TargetPath>libftd2xx.dylib</TargetPath>
+      <TargetPath>libftd2xx_arm64.dylib</TargetPath>
     </ContentWithTargetPath>
-    <ContentWithTargetPath Include="Library/linux/arch/x64/libftd2xx.so" Condition=" $([MSBuild]::IsOsPlatform('Linux')) AND '$([System.Runtime.InteropServices.RuntimeInformation]::OSArchitecture)' == 'X64' ">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <TargetPath>libftd2xx.so</TargetPath>
-    </ContentWithTargetPath>
-    <ContentWithTargetPath Include="Library/linux/arch/arm64/libftd2xx.so" Condition=" $([MSBuild]::IsOsPlatform('Linux')) AND '$([System.Runtime.InteropServices.RuntimeInformation]::OSArchitecture)' == 'Arm64' ">
+    <ContentWithTargetPath Include="Library/linux/arch/x64/libftd2xx.so" Condition=" '$(RuntimeIdentifier)' == 'linux-x64' OR ( '$(RuntimeIdentifier)' == '' AND $([MSBuild]::IsOsPlatform('Linux')) AND '$([System.Runtime.InteropServices.RuntimeInformation]::OSArchitecture)' == 'X64' )">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>libftd2xx.so</TargetPath>
     </ContentWithTargetPath>
-    <ContentWithTargetPath Include="Library/windows/arch/x64/ftd2xx.dll" Condition=" $([MSBuild]::IsOsPlatform('Windows')) AND '$([System.Runtime.InteropServices.RuntimeInformation]::OSArchitecture)' == 'X64' ">
+    <ContentWithTargetPath Include="Library/linux/arch/arm64/libftd2xx.so" Condition=" '$(RuntimeIdentifier)' == 'linux-arm64' OR ( '$(RuntimeIdentifier)' == '' AND $([MSBuild]::IsOsPlatform('Linux')) AND '$([System.Runtime.InteropServices.RuntimeInformation]::OSArchitecture)' == 'Arm64' )">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>libftd2xx.so</TargetPath>
+    </ContentWithTargetPath>
+    <ContentWithTargetPath Include="Library/windows/arch/x64/ftd2xx.dll" Condition=" '$(RuntimeIdentifier)' == 'win-x64' OR ( '$(RuntimeIdentifier)' == '' AND $([MSBuild]::IsOsPlatform('Windows')) AND '$([System.Runtime.InteropServices.RuntimeInformation]::OSArchitecture)' == 'X64' )">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ftd2xx.dll</TargetPath>
     </ContentWithTargetPath>
-    <ContentWithTargetPath Include="Library/windows/arch/arm64/ftd2xx.dll" Condition=" $([MSBuild]::IsOsPlatform('Windows')) AND '$([System.Runtime.InteropServices.RuntimeInformation]::OSArchitecture)' == 'Arm64' ">
+    <ContentWithTargetPath Include="Library/windows/arch/arm64/ftd2xx.dll" Condition=" '$(RuntimeIdentifier)' == 'win-arm64' OR ( '$(RuntimeIdentifier)' == '' AND $([MSBuild]::IsOsPlatform('Windows')) AND '$([System.Runtime.InteropServices.RuntimeInformation]::OSArchitecture)' == 'Arm64' )">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ftd2xx.dll</TargetPath>
     </ContentWithTargetPath>
   </ItemGroup>
 
   <ItemGroup>
-    <ContentWithTargetPath Include="Library/darwin/arch/x64/UsbEventWatcher.Mac.dylib" Condition=" $([MSBuild]::IsOsPlatform('OSX')) AND '$([System.Runtime.InteropServices.RuntimeInformation]::OSArchitecture)' == 'X64' ">
+    <ContentWithTargetPath Include="Library/darwin/arch/x64/UsbEventWatcher.Mac.dylib" Condition=" '$(RuntimeIdentifier)' == 'osx-x64' OR ( '$(RuntimeIdentifier)' == '' AND $([MSBuild]::IsOsPlatform('OSX')) AND '$([System.Runtime.InteropServices.RuntimeInformation]::OSArchitecture)' == 'X64' )">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>UsbEventWatcher.Mac.dylib</TargetPath>
     </ContentWithTargetPath>
-    <ContentWithTargetPath Include="Library/darwin/arch/arm64/UsbEventWatcher.Mac.dylib" Condition=" $([MSBuild]::IsOsPlatform('OSX')) AND '$([System.Runtime.InteropServices.RuntimeInformation]::OSArchitecture)' == 'Arm64' ">
+    <ContentWithTargetPath Include="Library/darwin/arch/arm64/UsbEventWatcher.Mac.dylib" Condition=" '$(RuntimeIdentifier)' == 'osx-arm64' OR ( '$(RuntimeIdentifier)' == '' AND $([MSBuild]::IsOsPlatform('OSX')) AND '$([System.Runtime.InteropServices.RuntimeInformation]::OSArchitecture)' == 'Arm64' )">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>UsbEventWatcher.Mac.dylib</TargetPath>
     </ContentWithTargetPath>
-    <ContentWithTargetPath Include="Library/linux/arch/x64/UsbEventWatcher.Linux.so" Condition=" $([MSBuild]::IsOsPlatform('Linux')) AND '$([System.Runtime.InteropServices.RuntimeInformation]::OSArchitecture)' == 'X64' ">
+    <ContentWithTargetPath Include="Library/linux/arch/x64/UsbEventWatcher.Linux.so" Condition=" '$(RuntimeIdentifier)' == 'linux-x64' OR ( '$(RuntimeIdentifier)' == '' AND $([MSBuild]::IsOsPlatform('Linux')) AND '$([System.Runtime.InteropServices.RuntimeInformation]::OSArchitecture)' == 'X64' )">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>UsbEventWatcher.Linux.so</TargetPath>
     </ContentWithTargetPath>
-    <ContentWithTargetPath Include="Library/linux/arch/arm64/UsbEventWatcher.Linux.so" Condition=" $([MSBuild]::IsOsPlatform('Linux')) AND '$([System.Runtime.InteropServices.RuntimeInformation]::OSArchitecture)' == 'Arm64' ">
+    <ContentWithTargetPath Include="Library/linux/arch/arm64/UsbEventWatcher.Linux.so" Condition=" '$(RuntimeIdentifier)' == 'linux-arm64' OR ( '$(RuntimeIdentifier)' == '' AND $([MSBuild]::IsOsPlatform('Linux')) AND '$([System.Runtime.InteropServices.RuntimeInformation]::OSArchitecture)' == 'Arm64' )">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>UsbEventWatcher.Linux.so</TargetPath>
     </ContentWithTargetPath>
