@@ -49,7 +49,9 @@
     </ContentWithTargetPath>
     <ContentWithTargetPath Include="Library/darwin/arch/arm64/UsbEventWatcher.Mac.dylib" Condition=" '$(RuntimeIdentifier)' == 'osx-arm64' OR ( '$(RuntimeIdentifier)' == '' AND $([MSBuild]::IsOsPlatform('OSX')) AND '$([System.Runtime.InteropServices.RuntimeInformation]::OSArchitecture)' == 'Arm64' )">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <TargetPath>UsbEventWatcher.Mac.dylib</TargetPath>
+      <!-- lib is required as a prefix to link the native library -->
+      <!-- https://github.com/dotnet/maui/issues/7829 -->
+      <TargetPath>libUsbEventWatcher.Mac.dylib</TargetPath>
     </ContentWithTargetPath>
     <ContentWithTargetPath Include="Library/linux/arch/x64/UsbEventWatcher.Linux.so" Condition=" '$(RuntimeIdentifier)' == 'linux-x64' OR ( '$(RuntimeIdentifier)' == '' AND $([MSBuild]::IsOsPlatform('Linux')) AND '$([System.Runtime.InteropServices.RuntimeInformation]::OSArchitecture)' == 'X64' )">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
