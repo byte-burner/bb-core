@@ -120,7 +120,7 @@ function publishApiToElectron(){
   --self-contained \
   $properties
 
-  cp -r $dotnet_api_src_path/bin/$configuration/net8.0/*/publish/* $electron_api_resource_path
+  cp -r $dotnet_api_src_path/bin/$configuration/net8.0/**/publish/* $electron_api_resource_path
 
   echo "Done!"
 }
@@ -140,7 +140,7 @@ function publishUtilToElectron(){
   --self-contained \
   $properties
 
-  cp -r $dotnet_util_src_path/bin/$configuration/net8.0/*/publish/* $electron_util_resource_path
+  cp -r $dotnet_util_src_path/bin/$configuration/net8.0/**/publish/* $electron_util_resource_path
 
   echo "Done!"
 }

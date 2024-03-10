@@ -7,6 +7,7 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <!-- Suppress warnings related to mandatory code comments from above <GenerateDocumentationFile> tag-->
     <NoWarn>1591</NoWarn>
+    <RuntimeIdentifiers>win-arm64;win-x64;linux-arm64;linux-x64;osx-arm64;osx-x64</RuntimeIdentifiers>
   </PropertyGroup>
 
   <ItemGroup>

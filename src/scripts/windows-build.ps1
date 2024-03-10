@@ -90,7 +90,7 @@ function publishApiToElectron(){
   --self-contained `
   @properties
 
-  Copy-Item -Recurse -force -Path $dotnet_api_src_path/bin/$configuration/net8.0/*/publish/* -Destination $electron_api_resource_path
+  Copy-Item -Recurse -force -Path $dotnet_api_src_path/bin/$configuration/net8.0/**/publish/* -Destination $electron_api_resource_path
 
   Write-Host "Done!"
 }
@@ -116,7 +116,7 @@ function publishUtilToElectron(){
   --self-contained `
   @properties
 
-  Copy-Item -Recurse -force -Path $dotnet_util_src_path/bin/$configuration/net8.0/*/publish/* -Destination $electron_util_resource_path
+  Copy-Item -Recurse -force -Path $dotnet_util_src_path/bin/$configuration/net8.0/**/publish/* -Destination $electron_util_resource_path
 
   Write-Host "Done!"
 }
