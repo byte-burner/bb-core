@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react';
 import {
   Grid,
   Button,
-  Box,
   CircularProgress,
+  Stack,
+  Box,
 } from '@mui/material';
-import { styled } from '@mui/material/styles';
+// import { styled } from '@mui/material/styles';
 import LocalFireDepartmentIcon from '@mui/icons-material/LocalFireDepartment';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import MemoryIcon from '@mui/icons-material/Memory';
@@ -14,24 +15,14 @@ import { useDeviceProgrammiingApi } from '../../../Api/RestApi';
 import { useMonitorDeviceInfoContext } from '../../../Common/providers';
 import { ProgrammingInfo } from '../../../Api/models';
 
-const Item = styled(Box)(() => ({
-  position: 'relative',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-}));
-
 // eslint-disable-next-line react/prop-types
 function Line({ sx }) {
   return (
     <Box
       sx={{
-        position: 'absolute',
-        top: 'calc(35px / 2)',
+        marginTop: 2,
         bottom: 0,
-        left: 'calc((266.66px / 2) + 35px)',
         right: 0,
-        width: 'calc(266.66px - 70px)',
         height: '1px',
         backgroundColor: ({ palette }) => palette.text.primary,
         ...sx,
@@ -133,118 +124,81 @@ export function MainPage() {
   }, [bridges, devices]);
 
   return (
-    <Grid container paddingTop={15}>
-
-      <Grid
-        container
-      >
-        <Grid item xs={4} position="relative">
-          <Item>
-            <MemoryIcon fontSize="large" />
-          </Item>
-          <Line sx={getBoldStyle(addIconBold)} />
-        </Grid>
-
-        <Grid item xs={4} position="relative" display="flex" justifyContent="center">
-          <Item>
-            <AddBoxIcon sx={getBoldStyle(addIconBold)} fontSize="large" />
-          </Item>
-          <Line sx={getBoldStyle(fireIconBold)} />
-        </Grid>
-
-        <Grid item xs={4} position="relative">
-          <Item>
-            <LocalFireDepartmentIcon sx={getBoldStyle(fireIconBold)} fontSize="large" />
-          </Item>
-        </Grid>
-
+    <Grid container mt={15} columns={12}>
+      <Grid item xs={4} sm={3}>
+        <Stack direction="column" spacing={3} sx={{ alignItems: 'center' }}>
+          <MemoryIcon fontSize="large" />
+          <Dropdown
+            size="small"
+            data={bridges}
+            onChange={(item) => {
+              setBridge({ ...item });
+            }}
+            value={bridge}
+            textId="bridgeDescription"
+            keyId="bridgeSerialNbr"
+            labelId="selectBridgeLabelId"
+            id="selectBridgeId"
+            label="Select Bridge"
+            sx={autoCompleteStyle}
+          />
+          <Dropdown
+            size="small"
+            data={devices}
+            onChange={(item) => {
+              setDevice(item);
+            }}
+            value={device}
+            textId="deviceType"
+            keyId="deviceType"
+            labelId="selectDeviceLabelId"
+            id="selectDeviceId"
+            label="Select Device"
+            sx={autoCompleteStyle}
+          />
+        </Stack>
       </Grid>
-
-      <Grid
-        container
-        paddingTop={5}
-      >
-
-        <Grid item xs={4}>
-          <Item>
-            <Dropdown
-              size="small"
-              data={bridges}
-              onChange={(item) => {
-                setBridge({ ...item });
-              }}
-              value={bridge}
-              textId="bridgeDescription"
-              keyId="bridgeSerialNbr"
-              labelId="selectBridgeLabelId"
-              id="selectBridgeId"
-              label="Select Bridge"
-              sx={autoCompleteStyle}
+      <Grid item xs={0} sm={1.5}>
+        <Line sx={getBoldStyle(addIconBold)} />
+      </Grid>
+      <Grid item xs={4} sm={3}>
+        <Stack direction="column" spacing={3} sx={{ alignItems: 'center' }}>
+          <AddBoxIcon sx={getBoldStyle(addIconBold)} fontSize="large" />
+          <Button
+            size="large"
+            variant="contained"
+            sx={buttonStyle}
+            component="label"
+            disabled={fileButtonDisabled}
+          >
+            {(!file ? 'Select File' : file.name)}
+            <input
+              id="fileUploadInput"
+              type="file"
+              hidden
+              accept={getSupportedFileExtensionsByDeviceType.data.join(',')}
+              onChange={onFileChange}
             />
-          </Item>
-        </Grid>
-
-        <Grid item xs={4}>
-          <Item>
-            <Button
-              size="large"
-              variant="contained"
-              sx={buttonStyle}
-              component="label"
-              disabled={fileButtonDisabled}
-            >
-              {(!file ? 'Select File' : file.name)}
-              <input
-                id="fileUploadInput"
-                type="file"
-                hidden
-                accept={getSupportedFileExtensionsByDeviceType.data.join(',')}
-                onChange={onFileChange}
-              />
-            </Button>
-          </Item>
-        </Grid>
-
-        <Grid item xs={4}>
-          <Item>
-            <Button
-              size="large"
-              variant="contained"
-              sx={buttonStyle}
-              disabled={burnButtonDisabled}
-              onClick={onBurnClick}
-            >
-              {(!programDevice.loading ? 'Burn device' : <CircularProgress size={25} />)}
-            </Button>
-          </Item>
-        </Grid>
-
+          </Button>
+        </Stack>
       </Grid>
-
-      <Grid
-        container
-        paddingTop={3}
-      >
-        <Grid item xs={4}>
-          <Item>
-            <Dropdown
-              size="small"
-              data={devices}
-              onChange={(item) => {
-                setDevice(item);
-              }}
-              value={device}
-              textId="deviceType"
-              keyId="deviceType"
-              labelId="selectDeviceLabelId"
-              id="selectDeviceId"
-              label="Select Device"
-              sx={autoCompleteStyle}
-            />
-          </Item>
-        </Grid>
+      <Grid item xs={0} sm={1.5}>
+        <Line sx={getBoldStyle(addIconBold)} />
       </Grid>
-
+      <Grid item xs={4} sm={3}>
+        <Stack direction="column" spacing={3} sx={{ alignItems: 'center' }}>
+          <LocalFireDepartmentIcon sx={getBoldStyle(fireIconBold)} fontSize="large" />
+          <Button
+            size="large"
+            variant="contained"
+            sx={buttonStyle}
+            disabled={burnButtonDisabled}
+            onClick={onBurnClick}
+          >
+            {(!programDevice.loading ? 'Burn device' : <CircularProgress size={25} />)}
+          </Button>
+        </Stack>
+      </Grid>
     </Grid>
   );
 }

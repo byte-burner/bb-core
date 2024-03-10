@@ -11,6 +11,8 @@ export const initMainWindow = async () => {
   const mainWindow = new BrowserWindow({
     width: 800,
     height: 480,
+    minWidth: 800,
+    minHeight: 480,
     title: process.env.APP_NAME,
     titleBarStyle: 'hiddenInset',
     titleBarOverlay: true,
@@ -19,7 +21,7 @@ export const initMainWindow = async () => {
       // eslint-disable-next-line no-undef
       preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
     },
-    resizable: false,
+    resizable: true,
     icon: process.env.ICON_PATH,
   });
 
