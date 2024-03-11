@@ -45,7 +45,7 @@ jobs:
       - name: Setup python3
         uses: actions/setup-python@v4
         with:
-          python-version: '3.9' 
+          python-version: '3.9.4' 
 
       - name: Print python3 version
         run: |
