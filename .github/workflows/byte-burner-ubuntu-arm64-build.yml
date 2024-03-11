@@ -6,7 +6,7 @@ on:
 
 jobs:
   build-ubuntu-arm64:
-    runs-on: byte-burner-arm64
+    runs-on: byte-burner-arm64-runner
     steps:
       - name: Checkout main branch
         uses: actions/checkout@v3
