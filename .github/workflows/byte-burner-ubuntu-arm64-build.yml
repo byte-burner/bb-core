@@ -42,10 +42,15 @@ jobs:
           dotnet --version
           echo "*****************************************"
 
+      - name: Setup python3 PPA
+        run: |
+          sudo add-apt-repository ppa:deadsnakes/ppa
+          sudo apt-get update
+
       - name: Setup python3
         uses: actions/setup-python@v4
         with:
-          python-version: '3.9.4' 
+          python-version: '3.9' 
 
       - name: Print python3 version
         run: |
