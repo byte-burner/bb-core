@@ -1,5 +1,8 @@
 name: Byte Burner Ubuntu (Arm64) Build
 
+env:
+  DOTNET_INSTALL_DIR: "./.dotnet"
+
 on:
   workflow_dispatch:
   workflow_call:
