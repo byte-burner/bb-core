@@ -17,9 +17,7 @@ Go to https://www.byte-burner.com/ to install the correct version of Byte Burner
 
 Supported platforms include:
 - Windows 10 / 11 x64
-- Windows 10 / 11 arm64
 - Ubuntu 22.04 x64
-- Ubuntu 22.04 arm64
 - OSX x64
 - OSX arm64
 

@@ -1,11 +1,12 @@
-name: Byte Burner Ubuntu Build
+name: Byte Burner Ubuntu (Arm64) Build
 
 on:
+  workflow_dispatch:
   workflow_call:
 
 jobs:
-  build-ubuntu:
-    runs-on: ubuntu-latest
+  build-ubuntu-arm64:
+    runs-on: byte-burner-arm64
     steps:
       - name: Checkout main branch
         uses: actions/checkout@v3
@@ -49,25 +50,10 @@ jobs:
           python3 --version
           echo "*****************************************"
 
-      - name: Build Electron App (x64)
-        run: |
-          cd src/scripts
-          ./unix-build.sh
-
-      - name: Upload Byte Burner To Digital Ocean Spaces (x64)
-        uses: BetaHuhn/do-spaces-action@latest
-        with:
-          access_key: ${{ secrets.ACCESS_KEY}}
-          secret_key: ${{ secrets.SECRET_KEY }}
-          space_name: ${{ secrets.SPACES_NAME }}
-          space_region: ${{ secrets.SPACES_REGION }}
-          source: src/client/out/make/deb/x64/byte-burner_1.0.0_amd64.deb
-          out_dir: x64
-
       - name: Build Electron App (Arm64)
         run: |
           cd src/scripts
-          ./unix-build.sh -r linux-arm64 -a arm64
+          ./unix-build.sh
 
       - name: Upload Byte Burner To Digital Ocean Spaces (Arm64)
         uses: BetaHuhn/do-spaces-action@latest
@@ -78,3 +64,4 @@ jobs:
           space_region: ${{ secrets.SPACES_REGION }}
           source: src/client/out/make/deb/arm64/byte-burner_1.0.0_arm64.deb
           out_dir: arm64
+

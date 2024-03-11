@@ -1,7 +1,7 @@
 name: Byte Burner Integration
 
 on:
-  push:
+  pull_request:
     branches: [ main ]
     paths: [ src/client/**, src/net_iot/** ]
   workflow_dispatch:
@@ -15,4 +15,7 @@ jobs:
     secrets: inherit
   build-windows-dist:
     uses: ./.github/workflows/byte-burner-windows-build.yml
+    secrets: inherit
+  build-ubuntu-arm64-dist:
+    uses: ./.github/workflows/byte-burner-ubuntu-arm64-build.yml
     secrets: inherit

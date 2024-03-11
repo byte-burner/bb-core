@@ -23,3 +23,12 @@
 - FT232RL
 - ESP32 (Wireless option)
 - RP2040 (Raspberry Pi Pico) (Wireless option)
+
+
+## Future Platform Support
+
+Github runners for arm64 are coming soon!
+
+- Ubuntu arm64
+- Windows arm64
+- Raspberry Pi OS arm64
