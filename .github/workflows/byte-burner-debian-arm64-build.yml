@@ -44,6 +44,9 @@ jobs:
           sudo add-apt-repository ppa:deadsnakes/ppa
           sudo apt update
           sudo apt install python3.12 -y
+          source ~/.bash_profile
+          source ~/.profile
+          source ~/.bashrc
 
       - name: Print python3 version
         run: |
@@ -51,9 +54,15 @@ jobs:
           python3 --version
           echo "*****************************************"
 
+      - name: Print pip version
+        run: |
+          echo "*****************************************"
+          pip --version
+          echo "*****************************************"
+
       - name: Install python 'setuptools' library for native node module deps to work in electron
         run: |
-          pip3 install setuptools
+          pip install setuptools
 
       - name: Build Electron App (Arm64)
         run: |
