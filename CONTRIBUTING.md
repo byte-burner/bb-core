@@ -14,8 +14,9 @@ This structure provides users with flexibility in choosing their preferred metho
 
 ### What tools do I need installed for development?
   - VSCode or VS (IDE)
-  - Nodejs - 20.10.0
-  - Python - 3.9
+  - Nodejs - 20.11.1
+  - Python - 3.12.2
+    - run 'pip3 install setuptools' (must install 'setuptools' for native node modules like node-pty to work) 
   - dotnet SDK - 8.0.100
   - Helpful VSCode Extensions
     - C# Dev Kit

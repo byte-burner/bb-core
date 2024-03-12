@@ -7,15 +7,15 @@ on:
   workflow_dispatch:
 
 jobs:
-  build-ubuntu-dist:
-    uses: ./.github/workflows/byte-burner-ubuntu-build.yml
+  build-debian-x64-dist:
+    uses: ./.github/workflows/byte-burner-debian-x64-build.yml
+    secrets: inherit
+  build-debian-arm64-dist:
+    uses: ./.github/workflows/byte-burner-debian-arm64-build.yml
     secrets: inherit
   build-darwin-dist:
-    uses: ./.github/workflows/byte-burner-darwin-build.yml
+    uses: ./.github/workflows/byte-burner-darwin-x64-arm64-build.yml
     secrets: inherit
   build-windows-dist:
-    uses: ./.github/workflows/byte-burner-windows-build.yml
-    secrets: inherit
-  build-ubuntu-arm64-dist:
-    uses: ./.github/workflows/byte-burner-ubuntu-arm64-build.yml
+    uses: ./.github/workflows/byte-burner-windows-x64-arm64-build.yml
     secrets: inherit
