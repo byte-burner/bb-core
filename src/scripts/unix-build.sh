@@ -57,7 +57,7 @@ bundle_util=false
 package=true
 development=false
 configuration='Release'
-electron_arch='x64'
+electron_arch=''
 
 
 properties=''

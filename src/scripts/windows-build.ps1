@@ -12,7 +12,7 @@ Param(
   [switch]$bundleApi,
   [switch]$noPackage,
   [switch]$development,
-  [ValidateSet("x64", "arm64")][Alias('a')][String]$electronArch = "x64",
+  [ValidateSet("x64", "arm64")][Alias('a')][String]$electronArch,
   [Parameter(ValueFromRemainingArguments=$true)][String[]]$properties
 )
 
