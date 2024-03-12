@@ -1,12 +1,12 @@
-name: Byte Burner Raspberry Pi OS (Arm64) Build
+name: Byte Burner Debian (x64) Build
 
 on:
   workflow_dispatch:
   workflow_call:
 
 jobs:
-  build-rpi-arm64:
-    runs-on: ubuntu-20-04-arm64
+  build-debian-x64:
+    runs-on: ubuntu-20.04
     steps:
       - name: Checkout main branch
         uses: actions/checkout@v3
@@ -39,54 +39,32 @@ jobs:
           dotnet --version
           echo "*****************************************"
 
-      - name: Setup pip3
-        run: |
-          sudo apt update
-          sudo apt install python3-pip -y
-          source ~/.profile
-          source ~/.bashrc
+      - name: Setup python3
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12.2' 
 
-      - name: Print pip3 version
+      - name: Print python3 version
         run: |
           echo "*****************************************"
-          pip3 --version
+          python3 --version
           echo "*****************************************"
 
       - name: Install python 'setuptools' library for native node module deps to work in electron
         run: |
           pip3 install setuptools
 
-      - name: Build Electron App (Arm64)
+      - name: Build Electron App (x64)
         run: |
           cd src/scripts
           ./unix-build.sh
 
-      - name: Re-pack the deb file for Raspberry Pi OS
-        run: |
-          cd src/client/out/make/deb/arm64
-
-          # Extract files from the archive
-          ar x byte-burner_1.0.0_arm64.deb
-
-          # Uncompress zstd files and re-compress them using xz
-          zstd -d < control.tar.zst | xz > control.tar.xz
-          zstd -d < data.tar.zst | xz > data.tar.xz
-
-          # Re-create the Debian package in /tmp/
-          ar -m -c -a sdsd byte-burner_1.0.0_arm64_rpi.deb debian-binary control.tar.xz data.tar.xz
-
-          # Clean up
-          rm byte-burner_1.0.0_arm64.deb debian-binary control.tar.xz data.tar.xz control.tar.zst data.tar.zst
-
-
-      - name: Upload Byte Burner To Digital Ocean Spaces (Arm64)
+      - name: Upload Byte Burner To Digital Ocean Spaces (x64)
         uses: BetaHuhn/do-spaces-action@latest
         with:
           access_key: ${{ secrets.ACCESS_KEY}}
           secret_key: ${{ secrets.SECRET_KEY }}
           space_name: ${{ secrets.SPACES_NAME }}
           space_region: ${{ secrets.SPACES_REGION }}
-          source: src/client/out/make/deb/arm64/byte-burner_1.0.0_arm64_rpi.deb
-          out_dir: arm64
-
-
+          source: src/client/out/make/deb/x64/byte-burner_1.0.0_amd64.deb
+          out_dir: x64

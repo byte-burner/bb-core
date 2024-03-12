@@ -6,7 +6,7 @@ on:
 
 jobs:
   build-debian-arm64:
-    runs-on: ARM64
+    runs-on: ubuntu-22-04-arm64
     steps:
       - name: Checkout main branch
         uses: actions/checkout@v3
@@ -70,4 +70,5 @@ jobs:
           space_region: ${{ secrets.SPACES_REGION }}
           source: src/client/out/make/deb/arm64/byte-burner_1.0.0_arm64.deb
           out_dir: arm64
+
 

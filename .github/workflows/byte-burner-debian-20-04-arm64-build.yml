@@ -1,12 +1,12 @@
-name: Byte Burner Debian (x64) Build
+name: Byte Burner Debian (Arm64) Build
 
 on:
   workflow_dispatch:
   workflow_call:
 
 jobs:
-  build-debian-x64:
-    runs-on: ubuntu-latest
+  build-debian-arm64:
+    runs-on: ubuntu-20-04-arm64
     steps:
       - name: Checkout main branch
         uses: actions/checkout@v3
@@ -39,32 +39,35 @@ jobs:
           dotnet --version
           echo "*****************************************"
 
-      - name: Setup python3
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.12.2' 
+      - name: Setup pip3
+        run: |
+          sudo apt update
+          sudo apt install python3-pip -y
+          source ~/.profile
+          source ~/.bashrc
 
-      - name: Print python3 version
+      - name: Print pip3 version
         run: |
           echo "*****************************************"
-          python3 --version
+          pip3 --version
           echo "*****************************************"
 
       - name: Install python 'setuptools' library for native node module deps to work in electron
         run: |
           pip3 install setuptools
 
-      - name: Build Electron App (x64)
+      - name: Build Electron App (Arm64)
         run: |
           cd src/scripts
           ./unix-build.sh
 
-      - name: Upload Byte Burner To Digital Ocean Spaces (x64)
+      - name: Upload Byte Burner To Digital Ocean Spaces (Arm64)
         uses: BetaHuhn/do-spaces-action@latest
         with:
           access_key: ${{ secrets.ACCESS_KEY}}
           secret_key: ${{ secrets.SECRET_KEY }}
           space_name: ${{ secrets.SPACES_NAME }}
           space_region: ${{ secrets.SPACES_REGION }}
-          source: src/client/out/make/deb/x64/byte-burner_1.0.0_amd64.deb
-          out_dir: x64
+          source: src/client/out/make/deb/arm64/byte-burner_1.0.0_arm64.deb
+          out_dir: arm64
+
