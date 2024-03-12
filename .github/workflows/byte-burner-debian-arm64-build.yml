@@ -44,19 +44,20 @@ jobs:
           sudo add-apt-repository ppa:deadsnakes/ppa
           sudo apt update
           sudo apt install python3.12 -y
+          sudo apt install python3-pip
           source ~/.profile
           source ~/.bashrc
 
       - name: Print python3 version
         run: |
           echo "*****************************************"
-          python3 --version
+          python3.12 --version
           echo "*****************************************"
 
       - name: Print pip version
         run: |
           echo "*****************************************"
-          pip --version
+          pip3 --version
           echo "*****************************************"
 
       - name: Install python 'setuptools' library for native node module deps to work in electron
