@@ -63,9 +63,7 @@ jobs:
 
       - name: Re-pack the deb file for Raspberry Pi OS
         run: |
-          cd src/client/out/make
-
-          ls -l
+          cd src/client/out/make/deb/arm64
 
           # Extract files from the archive
           ar x byte-burner_1.0.0_arm64.deb
