@@ -65,6 +65,8 @@ jobs:
         run: |
           cd src/client/out/make
 
+          ls -l
+
           # Extract files from the archive
           ar x byte-burner_1.0.0_arm64.deb
 
