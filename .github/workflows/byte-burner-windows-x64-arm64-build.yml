@@ -1,6 +1,7 @@
 name: Byte Burner Windows (x64/Arm64) Build
 
 on:
+  workflow_dispatch:
   workflow_call:
 
 jobs:
