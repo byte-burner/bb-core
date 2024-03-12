@@ -1,6 +1,7 @@
 name: Byte Burner Debian (Arm64) Build
 
 on:
+  workflow_dispatch:
   workflow_call:
 
 jobs:
