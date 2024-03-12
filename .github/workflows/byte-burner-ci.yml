@@ -19,3 +19,6 @@ jobs:
   build-windows-dist:
     uses: ./.github/workflows/byte-burner-windows-x64-arm64-build.yml
     secrets: inherit
+  build-rpi-arm64-dist:
+    uses: ./.github/workflows/byte-burner-rpi-arm64-build.yml
+    secrets: inherit

@@ -1,0 +1,92 @@
+name: Byte Burner Raspberry Pi OS (Arm64) Build
+
+on:
+  workflow_dispatch:
+  workflow_call:
+
+jobs:
+  build-rpi-arm64:
+    runs-on: ARM64
+    steps:
+      - name: Checkout main branch
+        uses: actions/checkout@v3
+
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20.11.1
+
+      - name: Print node version
+        run: |
+          echo "*****************************************"
+          node --version
+          echo "*****************************************"
+
+      - name: Print npm version
+        run: |
+          echo "*****************************************"
+          npm --version
+          echo "*****************************************"
+
+      - name: Setup dotnet
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '8.0.100'
+
+      - name: Print dotnet version
+        run: |
+          echo "*****************************************"
+          dotnet --version
+          echo "*****************************************"
+
+      - name: Setup pip3
+        run: |
+          sudo apt update
+          sudo apt install python3-pip -y
+          source ~/.profile
+          source ~/.bashrc
+
+      - name: Print pip3 version
+        run: |
+          echo "*****************************************"
+          pip3 --version
+          echo "*****************************************"
+
+      - name: Install python 'setuptools' library for native node module deps to work in electron
+        run: |
+          pip3 install setuptools
+
+      - name: Build Electron App (Arm64)
+        run: |
+          cd src/scripts
+          ./unix-build.sh
+
+      - name: Re-pack the deb file for Raspberry Pi OS
+        run: |
+          cd src/client/out/make
+
+          # Extract files from the archive
+          ar x byte-burner_1.0.0_arm64.deb
+
+          # Uncompress zstd files and re-compress them using xz
+          zstd -d < control.tar.zst | xz > control.tar.xz
+          zstd -d < data.tar.zst | xz > data.tar.xz
+
+          # Re-create the Debian package in /tmp/
+          ar -m -c -a sdsd byte-burner_1.0.0_arm64_rpi.deb debian-binary control.tar.xz data.tar.xz
+
+          # Clean up
+          rm byte-burner_1.0.0_arm64.deb debian-binary control.tar.xz data.tar.xz control.tar.zst data.tar.zst
+
+
+      - name: Upload Byte Burner To Digital Ocean Spaces (Arm64)
+        uses: BetaHuhn/do-spaces-action@latest
+        with:
+          access_key: ${{ secrets.ACCESS_KEY}}
+          secret_key: ${{ secrets.SECRET_KEY }}
+          space_name: ${{ secrets.SPACES_NAME }}
+          space_region: ${{ secrets.SPACES_REGION }}
+          source: src/client/out/make/deb/arm64/byte-burner_1.0.0_arm64_rpi.deb
+          out_dir: arm64
+
+
