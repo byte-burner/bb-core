@@ -6,7 +6,7 @@ on:
 
 jobs:
   build-darwin:
-    runs-on: macos-latest
+    runs-on: macos-11
     steps:
       - name: Checkout main branch
         uses: actions/checkout@v3
@@ -67,7 +67,7 @@ jobs:
           space_name: ${{ secrets.SPACES_NAME }}
           space_region: ${{ secrets.SPACES_REGION }}
           source: src/client/out/make/zip/darwin/x64/byte-burner-darwin-x64-1.0.0.zip
-          out_dir: x64
+          out_dir: download/v1.0.0/x64
 
       - name: Build Electron App (Arm64)
         run: |
@@ -82,4 +82,4 @@ jobs:
           space_name: ${{ secrets.SPACES_NAME }}
           space_region: ${{ secrets.SPACES_REGION }}
           source: src/client/out/make/zip/darwin/arm64/byte-burner-darwin-arm64-1.0.0.zip
-          out_dir: arm64
+          out_dir: download/v1.0.0/arm64
