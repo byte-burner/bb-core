@@ -6,6 +6,9 @@ const { logger } = require('../../Plugins/Logger');
  * Connects the net_iot_util process and sets the PATH (*nix) and Path (windows) env variable
  */
 export const connectUtilProcess = () => {
+  console.log('****************************');
+  console.log('Connecting Util Process');
+  console.log('****************************');
   if (!fs.existsSync(path.join(process.env.UTIL_EXEC_PATH, process.env.UTIL_EXEC_NAME))) {
     logger.error(`Utility program not found. Executable file, ${process.env.UTIL_EXEC_NAME} does not exist in ${process.env.UTIL_EXEC_PATH}.`);
   } else {
