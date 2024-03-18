@@ -10,7 +10,8 @@ export const connectUtilProcess = () => {
     logger.error(`Utility program not found. Executable file, ${process.env.UTIL_EXEC_NAME} does not exist in ${process.env.UTIL_EXEC_PATH}.`);
   } else {
     // Append the directory to the current Path env variable
-    process.env.Path = `${process.env.UTIL_EXEC_PATH}${path.delimiter}${process.env.Path}`; // update correct path env for program started from Powershell/Cmd
+    // eslint-disable-next-line max-len
+    // process.env.Path = `${process.env.UTIL_EXEC_PATH}${path.delimiter}${process.env.Path}`; // update correct path env for program started from Powershell/Cmd
     process.env.PATH = `${process.env.UTIL_EXEC_PATH}${path.delimiter}${process.env.PATH}`; // update correct path env for program started from Bash/Zsh/Etc..
   }
 
