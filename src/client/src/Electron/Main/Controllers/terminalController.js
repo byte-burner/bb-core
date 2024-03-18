@@ -75,6 +75,13 @@ const create = (_, conf) => {
   try {
     const shell = getShellByType(config?.type);
 
+    console.log('****************************************');
+    console.log(shell);
+    console.log('****************************************');
+
+    console.log('****************************************');
+    console.log(process.env);
+    console.log('****************************************');
     const ptyProcess = pty.spawn(shell?.path, shell?.args, {
       name: 'xterm-256color',
       cols: config.cols,
