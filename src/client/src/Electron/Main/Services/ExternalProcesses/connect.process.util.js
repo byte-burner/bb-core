@@ -12,6 +12,9 @@ export const connectUtilProcess = () => {
     // Append the directory to the current Path env variable
     // eslint-disable-next-line max-len
     // process.env.Path = `${process.env.UTIL_EXEC_PATH}${path.delimiter}${process.env.Path}`; // update correct path env for program started from Powershell/Cmd
+    console.log('****************************');
+    console.log('Updating PATH');
+    console.log('****************************');
     process.env.PATH = `${process.env.UTIL_EXEC_PATH}${path.delimiter}${process.env.PATH}`; // update correct path env for program started from Bash/Zsh/Etc..
   }
 
