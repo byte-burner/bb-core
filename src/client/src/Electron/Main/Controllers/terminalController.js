@@ -17,16 +17,28 @@ const executableTypeList = [
   'cmd',
 ];
 
-const windowsTypeShellMap = {
-  bash: { path: 'C:\\Program Files\\Git\\usr\\bin\\bash.exe', args: [] },
-  cmd: { path: 'C:\\Windows\\System32\\cmd.exe', args: [] },
-  powershell: { path: 'C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe', args: [] },
+const windowsTypeShellMap = (type) => {
+  switch (type) {
+    case 'bash':
+      return { path: 'C:\\Program Files\\Git\\usr\\bin\\bash.exe', args: [] };
+    case 'cmd':
+      return { path: 'C:\\Windows\\System32\\cmd.exe', args: [] };
+    case 'powershell':
+      return { path: 'C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe', args: [] };
+    default:
+      return null;
+  }
 };
 
-const unixTypeShellMap = {
-  // adding the --login arg should source the .bashrc and .bash_profile settings in unix
-  bash: { path: '/bin/bash', args: ['--login'] },
-  zsh: { path: '/bin/zsh', args: ['--login'] },
+const unixTypeShellMap = (type) => {
+  switch (type) {
+    case 'bash':
+      return { path: '/bin/bash', args: ['--rcfile', `${process.env.SCRIPTS_PATH}/linux/setupBashShell.sh`] };
+    case 'zsh':
+      return { path: '/bin/zsh', args: [] };
+    default:
+      return null;
+  }
 };
 
 /**
@@ -45,7 +57,7 @@ const ptyProcessList = [];
  * @returns {Object|null} The shell configuration or null if not found.
  */
 const getPlatformShellFromType = (type) => {
-  const shell = (os.platform() === 'win32') ? windowsTypeShellMap[type] : unixTypeShellMap[type];
+  const shell = (os.platform() === 'win32') ? windowsTypeShellMap(type) : unixTypeShellMap(type);
   return fs.existsSync(shell?.path) ? shell : null;
 };
 
