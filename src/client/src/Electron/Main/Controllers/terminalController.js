@@ -20,7 +20,7 @@ const executableTypeList = [
 const windowsTypeShellMap = (type) => {
   switch (type) {
     case 'bash':
-      return { path: 'C:\\Program Files\\Git\\usr\\bin\\bash.exe', args: [] };
+      return { path: 'C:\\Program Files\\Git\\usr\\bin\\bash.exe', args: ['--login'] };
     case 'cmd':
       return { path: 'C:\\Windows\\System32\\cmd.exe', args: [] };
     case 'powershell':
